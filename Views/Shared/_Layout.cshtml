@@ -7,50 +7,28 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link href="~/lib/font-awesome/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        .forinput {
+            margin-left: 15%;
+        }
+    </style>
 </head>
 <body>
-    <script src="lib/jquery/dist/jquery.js"></script>
-    <script src="lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
+    <script src="~lib/jquery/dist/jquery.js"></script>
+    <script src="~lib/bootstrap/dist/js/bootstrap.bundle.js"></script>
     <header>
         <div class="container">
             <!-- Панель навигации -->
             <nav class="navbar navbar-expand-md navbar-dark bg-dark">
                 <!-- меню сайта -->
-                <a class="navbar-brand" href="#">№ ЗК 0078449</a>
+                <a class="navbar-brand" asp-action="Index" aspcontroller="Home">WebLabsV06</a>
                 <div class="navbar-nav">
-                    <a class="nav-item nav-link active" asp-controller="Home" aspaction="Index">Lab 2</a>
-                    <a class="nav-item nav-link" asp-controller="Product" aspaction="Index">Каталог</a>
-                    <a class="nav-item nav-link" asp-area="Admin" asppage="/Index">Администрирование</a>
-                </div> <!-- меню сайта - конец -->
-                <!-- Информация пользователя -->
-                <a asp-controller="Cart" asp-action="Index" class="navbar-text mlauto">
-                    00,0 руб
-                    <i class="fas fa-shopping-cart nav-color"></i>
-                    (0)
-                </a>
-                <div class="dropdown ml-4 nav-color">
-                    <div class="dropdown-toggle"
-                         id="dropdownMenuButton"
-                         data-toggle="dropdown"
-                         aria-haspopup="true"
-                         aria-expanded="false">
-                        <img src="~/images/avatar.jpg" width="30" alt="User" class="rounded" />
-                    </div>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <div class="dropdown-item-text">
-                            <img src="~/images/avatar.jpg" width="50" alt="User" class="rounded" />
-                            user@mail.ru
-                        </div>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" asp-controller="Cart" aspaction="Index">
-                            Мои товары
-                        </a>
-                        <a class="dropdown-item" asp-area="Identity" asp-page="/Account/Logout">
-                            Log off
-                        </a>
-                    </div>
+                    @await Component.InvokeAsync("Menu")
                 </div>
-                <!-- Информация пользователя - конец -->
+                <!-- меню сайта - конец -->
+                <!-- Информация пользователя -->
+            <partial name="_UserPartial" />
+            <!-- Информация пользователя - конец -->
             </nav> <!-- Панель навигации - конец -->
         </div><!-- container - конец -->
     </header><!-- header - конец -->
