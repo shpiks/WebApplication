@@ -34,8 +34,9 @@
                     <label class="custom-file-label" for="customFile">Выберите файл</label>
                 </div>
             </div>
-                <button type="submit" class="btn btn-primary">Register</button>
-</form>
+            <button type="submit" class="btn btn-primary">Register</button>
+
+        </form>
     </div>
     <div class="col-md-6 col-md-offset-2">
         <section>
@@ -71,8 +72,7 @@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
-    <script src="~/lib/bs-custom-file-input/dist/bs-custom-file
-            -input.js"></script>
+    <script src="~/bs-custom-file-input/dist/bs-custom-file-input.js"></script>
     <script>
         $(document).ready(function () {
             bsCustomFileInput.init()
