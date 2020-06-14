@@ -74,6 +74,8 @@ namespace WebApplication
             app.UseAuthentication();
             app.UseAuthorization();
 
+            DbInitializer.Seed(context, userManager, roleManager).GetAwaiter().GetResult();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
@@ -82,7 +84,7 @@ namespace WebApplication
                 endpoints.MapRazorPages();
             });
 
-            DbInitializer.Seed(context, userManager, roleManager).GetAwaiter().GetResult();
+            
         }
     }
 }

@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Routing;
 
 namespace WebApplication.TagHelpers
 {
-    [HtmlTargetElement(tag: "img", Attributes = "img-action, imgcontroller")]
+    [HtmlTargetElement(tag: "img", Attributes = "img-action, img-controller")]
     public class ImageTagHelper : TagHelper
     {
         public string ImgAction { get; set; }

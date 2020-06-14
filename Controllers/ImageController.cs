@@ -27,12 +27,12 @@ namespace WebApplication.Controllers
                 return File(user.AvatarImage, "image/...");
             else
             {
-                var avatarPath = "/Images/avatar.jpg";
+                var avatarPath = "/images/avatar.jpg";
                 return File(_env.WebRootFileProvider.GetFileInfo(avatarPath).CreateReadStream(), "image/...");
             }
         }
 
-            public IActionResult Index()
+        public IActionResult Index()
         {
             return View();
         }

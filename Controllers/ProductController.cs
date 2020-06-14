@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.DAL.Entities;
+using WebApplication.Extensions;
 using WebApplication.Models;
 
 namespace WebApplication.Controllers
@@ -19,15 +20,25 @@ namespace WebApplication.Controllers
             _pageSize = 3;
             SetupData();
         }
+
+        [Route("Catalog")]
+        [Route("Catalog/Page_{pageNo}")]
         public IActionResult Index(int? group, int pageNo = 1)
         {
-            var dishesFiltered = _phones.Where(d => !group.HasValue || d.PhoneGroupId == group.Value);
+            var phonesFiltered = _phones.Where(d => !group.HasValue || d.PhoneGroupId == group.Value);
             // Поместить список групп во ViewData
             ViewData["Groups"] = _phoneGroups; 
 
             // Получить id текущей группы и поместить в TempData
             ViewData["CurrentGroup"] = group ?? 0;
-            return View(ListViewModel<Phone>.GetModel(dishesFiltered, pageNo, _pageSize));
+            //return View(ListViewModel<Phone>.GetModel(dishesFiltered, pageNo, _pageSize));
+            var model = ListViewModel<Phone>.GetModel(phonesFiltered, pageNo, _pageSize);
+            if (Request.IsAjaxRequest())
+                return PartialView("_listpartial", model);
+            else
+            {
+                return View(model);
+            }
         }
 
         private void SetupData()
