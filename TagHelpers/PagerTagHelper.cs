@@ -37,7 +37,8 @@ namespace WebApplication.TagHelpers
                 var item = GetPagerItem(url: url, text: i.ToString(), active: i == PageCurrent, disabled: i == PageCurrent);
                 // добавить кнопку в разметку пейджера
                 ulTag.InnerHtml.AppendHtml(item);
-            }             // добавить пейджер в контейнер
+            }             
+            // добавить пейджер в контейнер
             output.Content.AppendHtml(ulTag);
         }
 
