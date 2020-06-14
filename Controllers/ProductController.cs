@@ -4,27 +4,35 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WebApplication.DAL.Entities;
-
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
     public class ProductController : Controller
     {
-        List<Phone> _phones;
-        List<PhoneGroup> _dishGroups;
+        public List<Phone> _phones;
+        List<PhoneGroup> _phoneGroups;
+        int _pageSize;
 
         public ProductController()
         {
+            _pageSize = 3;
             SetupData();
         }
-        public IActionResult Index()
+        public IActionResult Index(int? group, int pageNo = 1)
         {
-            return View(_phones);
+            var dishesFiltered = _phones.Where(d => !group.HasValue || d.PhoneGroupId == group.Value);
+            // Поместить список групп во ViewData
+            ViewData["Groups"] = _phoneGroups; 
+
+            // Получить id текущей группы и поместить в TempData
+            ViewData["CurrentGroup"] = group ?? 0;
+            return View(ListViewModel<Phone>.GetModel(dishesFiltered, pageNo, _pageSize));
         }
 
         private void SetupData()
         {
-            _dishGroups = new List<PhoneGroup>
+            _phoneGroups = new List<PhoneGroup>
             {
                 new PhoneGroup { PhoneGroupId = 1, GroupName = "BQ-Mobile" },
                 new PhoneGroup { PhoneGroupId = 2, GroupName = "TeXet" },
