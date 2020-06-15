@@ -168,7 +168,7 @@ namespace WebApplication
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseFileLogging();
             app.UseRouting();
 
             app.UseAuthentication();

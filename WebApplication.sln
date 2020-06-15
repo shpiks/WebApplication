@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication", "WebApplic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication.DAL", "..\WebApplication.DAL\WebApplication.DAL.csproj", "{886E265D-775A-4358-BCB2-E7CC4DCA5025}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.Tests", "..\WebApplication.Tests\WebApplication.Tests.csproj", "{5C127074-DD8E-4D76-8459-E4D3F650ABF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication.Tests", "..\WebApplication.Tests\WebApplication.Tests.csproj", "{5C127074-DD8E-4D76-8459-E4D3F650ABF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

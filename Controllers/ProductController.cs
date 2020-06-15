@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using WebApplication.DAL.Data;
 using WebApplication.DAL.Entities;
 using WebApplication.Extensions;
@@ -12,15 +13,15 @@ namespace WebApplication.Controllers
 {
     public class ProductController : Controller
     {
-
+        //private ILogger _logger;
         int _pageSize;
         ApplicationDbContext _context;
 
-        public ProductController(ApplicationDbContext context)
+        public ProductController(ApplicationDbContext context/*, ILogger<ProductController> logger*/)
         {
             _context = context;
             _pageSize = 3;
-            //SetupData();
+            //_logger = logger;
         }
 
         [Route("Catalog")]
@@ -33,7 +34,8 @@ namespace WebApplication.Controllers
 
             // Получить id текущей группы и поместить в TempData
             ViewData["CurrentGroup"] = group ?? 0;
-            //return View(ListViewModel<Phone>.GetModel(dishesFiltered, pageNo, _pageSize));
+            //_logger.LogInformation($"info: group={group}, page={pageNo}");
+            
             var model = ListViewModel<Phone>.GetModel(phonesFiltered, pageNo, _pageSize);
             if (Request.IsAjaxRequest())
                 return PartialView("_listpartial", model);
